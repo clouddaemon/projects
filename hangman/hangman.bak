@@ -1,0 +1,57 @@
+"""Hangman created May 16th 
+   I need to control for case sentence words and no numbers
+"""
+
+constri_count = 1
+import random,sys,re,os
+import pyinputplus as pyip
+os.system('clear')
+#hangRegex = re.compile(r'(a-zA-Z]+)')
+guessed_letras = []
+found_letra = []
+def constri_word(): 
+    """this will create a random word from a text file in current directory called word_list"""
+    inFile = open("word_list", "r")
+    line = inFile.readlines()
+    constri_word.xrandom = (random.choice(list(open('word_list'))))
+    constri_word.xrandom = constri_word.xrandom.rstrip('\r\n') #this line is to remove line feed
+
+def constri_exp():  
+    found_letras = [] 
+    reveal = list(len(constri_word.xrandom)*'_')
+    while constri_word.xrandom:
+        letra = pyip.inputStr('Type in a letter ')
+        if letra in guessed_letras:
+            print('you already guessed that word ')
+            continue
+        hangRegex = re.compile(letra) #letra is the word that is inputted. 
+        found_letra = hangRegex.findall(constri_word.xrandom)
+        new_word = constri_word.xrandom.split(letra) #this removes the letter that is guessed
+        guessed_letras.append(letra)
+        print('guessed_letras = ', guessed_letras)
+        new_word2 = (''.join(new_word))
+        print('new_word2', new_word2)
+        constri_word.xrandom = new_word2
+      
+        if found_letra: 
+            print('I found_letra', ','.join(found_letra))    
+
+        elif new_word == "":
+            print('word guessed!')
+            won = True
+            break
+
+        elif len(guessed_letras) == 6:
+            print('you are out of guesses') 
+            out_guesses = False
+            break 
+
+        else:
+            print('we did not find that letra', letra)
+
+if won:   
+    print("You are the champion!")
+
+
+constri_word()
+constri_exp()

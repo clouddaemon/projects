@@ -1,0 +1,11 @@
+""" Rock paper cut - you will be playing against the computer """
+import random,sys,re,os
+import pyinputplus as pyip
+os.system('clear')
+
+response = pyip.inputMenu(['rocks', 'paper', 'cuts'])
+print('\n')
+random_index = random.randint(0,len(letters)-1)
+
+
+print(random_index)
